@@ -1,3 +1,4 @@
+/*
 module.exports = function(sequelize, DataTypes) {
   var Example = sequelize.define("Example", {
     text: DataTypes.STRING,
@@ -5,3 +6,4 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Example;
 };
+*/
