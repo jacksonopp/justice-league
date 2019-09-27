@@ -1,3 +1,5 @@
 config.json
 package-lock.json
 package.json
+**/*.css
+**/*.json
