@@ -7,7 +7,8 @@
     "start": "node server.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "watch": "nodemon server.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -17,13 +18,16 @@
     "husky": "^3.0.5",
     "lint-staged": "^9.4.0",
     "mysql2": "^1.6.5",
+    "nodemon": "^1.19.2",
     "react-scripts": "^3.1.2",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.18.2"
