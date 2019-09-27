@@ -3,20 +3,14 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    res.render("index", {
+      msg: "Welcome!"
     });
   });
 
   app.get("/questionaire", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("questionaire", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    res.render("questionaire", {
+      msg: "Welcome!"
     });
   });
 
@@ -39,6 +33,11 @@ module.exports = function(app) {
         examples: dbExamples
       });
     });
+  });
+
+  //testing auth0
+  app.get("/authorized", function(req, res) {
+    res.send("Secured Resource");
   });
 
   // Render 404 page for any unmatched routes

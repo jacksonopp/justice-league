@@ -30,4 +30,30 @@ module.exports = function(app) {
       res.json(PrivateTables);
     });
   });
+
+  app.post("/api/private", async function(req, res) {
+    try {
+      const userCheck = await db.PrivateTables.findAll({
+        where: {
+          email: req.body.email
+        }
+      });
+      if (userCheck.length < 1) {
+        const newUser = await db.PrivateTables.create({
+          email: req.body.email,
+          img_url: req.body.imageUrl,
+          user_full_name: req.body.name
+        });
+        res.send({ redirectURL: "/questionaire" });
+        console.log("created a new user");
+      } else {
+        res.send({ redirectURL: "www.google.com" });
+        console.log("did not create a new user");
+      }
+      // res.json(userCheck)
+    } catch (error) {
+      res.send(error);
+      console.log(error);
+    }
+  });
 };

@@ -1,13 +1,22 @@
-const userInfo = {};
+let userInfo = {};
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   userInfo = {
-    id: profile.getId(),
     name: profile.getName(),
     imageUrl: profile.getImageUrl(),
     email: profile.getEmail()
   };
+
+  console.log({ userInfo });
+  axios
+    .post("/api/private", userInfo)
+    .then(function(response) {
+      window.location.href = response.data.redirectURL;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 
 function signOut() {
@@ -16,12 +25,3 @@ function signOut() {
     console.log("User signed out.");
   });
 }
-
-axios
-  .post("/api/private", userInfo)
-  .then(function() {
-    console.log(response);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
