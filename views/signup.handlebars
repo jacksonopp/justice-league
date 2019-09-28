@@ -14,38 +14,35 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col text-center">
+        <div class="row">
+          <div class="col text-center">
             <h1>Sign Up</h1>
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-6 offset-3">
-            <form>
-            <div class="form-group">
-                <label for="firstname">First name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="John">
-            </div>
-            <div class="form-group">
-                <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Smith">
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="confirmpassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password">
-            </div>
-            <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
-            </form> 
+
+        <div class="row">
+          <div class="col-6 offset-3">
+            <form id="signup" name="signup" method="post" action="/signup">
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input id="email" class="form-control" name="email" type="email" />
+                    </div>
+                    <div class="form-group">
+                      <label for="firstname">First Name</label>
+                      <input id="firstname" class="form-control" name="firstname" type="text" />
+                    </div>
+                    <div class="form-group">
+                      <label for="lastname">Last Name</label>
+                      <input id="lastname" class="form-control" name="lastname" type="text" />
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input id="password" class="form-control" name="password" type="password" />
+                    </div>
+                    <input id="signup-btn" class="btn btn-primary" type="submit" value="Sign Up" />
+            </form>
+            <p class="mt-2">Already have an account? <a href="/signin">Sign In!</a></p>
+          </div>
         </div>
-    </div>
 </div>
 <script src="/js/signup.js"></script>
