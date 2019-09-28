@@ -31,8 +31,35 @@ module.exports = function(app, passport) {
     res.render("signup");
   });
 
+  app.get("/signupLink", function(req, res) {
+    res.render("signup");
+  });
+
+  app.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/dashboardLink",
+      failureRedirect: "/signupLink"
+    })
+  );
+
+  app.get("/dashboardLink", function(req, res) {
+    app.render("dashboard");
+  });
+
+  app.get("/dashboard", isLoggedIn, function(req, res) {
+    app.render("dashboard");
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
+
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/signin");
+  }
 };
