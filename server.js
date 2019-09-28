@@ -1,16 +1,27 @@
 require("dotenv").config();
-const express = require("express");
+const express = require("express"); // server framework
+const passport = require("passport"); // authentication framework
+const session = require("express-session"); // session logging framework
+const bodyParser = require("body-parser"); // body parser to make reqs easier
 const exphbs = require("express-handlebars");
+
+//models
 const db = require("./models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(express.static("public"));
-
+// for bodyparser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// for passport
+app.use(
+  session({ secret: "traffic light", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
