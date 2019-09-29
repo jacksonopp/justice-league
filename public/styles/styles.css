@@ -11,7 +11,7 @@ body {
 
 h1 {
   font-family: "Arsenal", sans-serif;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .list-group-item {
@@ -48,7 +48,7 @@ h1 {
   height: 400px;
   z-index: 1;
   background: #ffffff;
-  max-width: 360px;
+  /* max-width: 360px; */
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
@@ -137,4 +137,25 @@ h1 {
   background: white;
   padding: 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.container .question-page .col-md-6 {
+  max-width: 100%;
+  width: 60%;
+}
+
+#questionH1 {
+  text-align: center;
+}
+
+.question-form {
+  width: 100%;
+  height: auto;
+  margin-top: 8%;
+}
+
+#userInfoCard {
+  background: white;
+  padding: 20px;
+  margin: 7% auto;
 }

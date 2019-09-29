@@ -14,7 +14,6 @@ module.exports = function(app) {
   app.get("/questionaire", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("questionaire", {
-        msg: "Welcome!",
         examples: dbExamples
       });
     });
