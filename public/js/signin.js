@@ -1,11 +1,13 @@
+// const moment = require("moment");
+
 document.getElementById("signin-btn").addEventListener("click", (e) => {
     e.preventDefault();
     console.log("click")
     const body = {
         username: document.getElementById("username").value,
-        password: document.getElementById("password").value
+        password: document.getElementById("password").value,
     }
-    e.preventDefault();
+    console.log({ body });
     axios.post("/", body).then((response) => {
         const redirectURL = response.data;
         console.log(redirectURL);

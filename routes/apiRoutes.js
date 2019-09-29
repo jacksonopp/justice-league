@@ -1,6 +1,8 @@
 var db = require("../models");
 
 module.exports = function (app, passport) {
+
+
     // Get all examples
     app.get("/api/all", async function (req, res) {
         try {

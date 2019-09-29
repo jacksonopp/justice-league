@@ -1,14 +1,9 @@
+const db = require("../models");
+const moment = require("moment");
+
 module.exports = function (app, passport) {
     app.get("/", function (req, res) {
         res.render("index");
-    })
-
-    // app.get("/signin", function (req, res) {
-    //     res.render("signin");
-    // });
-
-    app.get("/signinFailed", function (req, res) {
-        res.send("/");
     })
 
     //sign in
@@ -17,17 +12,30 @@ module.exports = function (app, passport) {
         failureRedirect: "/signinFailed"
     }))
 
+    app.get("/signinFailed", function (req, res) {
+        res.send("/");
+    })
 
     //sends the link to redirect on the frontend
     app.get("/dashboardLink", function (req, res) {
         res.send("/dashboard");
     });
 
-    //renders the signin page
-
     //renders the dashboard page
-    app.get("/dashboard", isLoggedIn, function (req, res) {
-        res.render("dashboard");
+    app.get("/dashboard", isLoggedIn, async function (req, res) {
+        const lastLogin = await db.User.update(
+            { last_login: moment().format() },
+            {
+                where: {
+                    id: req.user.id
+                }
+            }
+        )
+        res.render("dashboard", {
+            username: req.user.username,
+            last_login: req.user.last_login
+        });
+        console.log(req.user);
     });
 
     //ends the session
