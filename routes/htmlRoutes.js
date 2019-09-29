@@ -11,6 +11,7 @@ module.exports = function (app, passport) {
         res.send("/");
     })
 
+    //sign in
     app.post("/", passport.authenticate("local-signin", {
         successRedirect: "/dashboardLink",
         failureRedirect: "/signinFailed"
@@ -73,6 +74,6 @@ module.exports = function (app, passport) {
         if (req.isAuthenticated()) {
             return next();
         }
-        res.redirect('/signin');
+        res.redirect('/');
     }
 }

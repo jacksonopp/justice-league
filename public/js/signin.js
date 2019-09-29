@@ -2,7 +2,7 @@ document.getElementById("signin-btn").addEventListener("click", (e) => {
     e.preventDefault();
     console.log("click")
     const body = {
-        email: document.getElementById("username").value,
+        username: document.getElementById("username").value,
         password: document.getElementById("password").value
     }
     e.preventDefault();
