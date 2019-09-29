@@ -1,15 +1,38 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-<input class="form-control" type="text" placeholder="Default input">    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input class="form-control" type="text" placeholder="Default input">
-  </div>
-  <div class="form-group form-check">
-    <input class="form-control" type="text" placeholder="Default input">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="container-fullwidth" id="navbarHeader">
+    <img class="logoImg" src="https://www.pngrepo.com/png/126491/170/traffic-light.png" height="50px" width="50px">
+    {{!-- <li class="nav-item active">
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          <button onclick="signOut()">sign out</button>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Sign up</a>
+        </li> --}}
+</div>
+
+<div class="container col-md-6" id="intakeForm">
+    <form>
+        <div class="form-group">
+            <label for="name">User Name</label>
+            <input class="form-control" type="text" placeholder="i.e. Imprezza'ng the ladies">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input class="form-control" type="text" placeholder="jondoe@gmail.com">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="location">City</label>
+            <input class="form-control" type="text" placeholder="Minneapolis">
+        </div>
+        <div class="form-group">
+            <label for="location">State</label>
+            <input class="form-control" type="text" placeholder="MN">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+        
