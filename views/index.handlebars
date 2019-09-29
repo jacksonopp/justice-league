@@ -1,34 +1,22 @@
+
 <div class="container-fullwidth" id="navbarHeader">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
+    <img class="logoImg" src="https://www.pngrepo.com/png/126491/170/traffic-light.png" height="50px" width="50px">
+    {{!-- <li class="nav-item active">
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
           <button onclick="signOut()">sign out</button>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Sign up</a>
-        </li>
-
-       
-        
-      </ul>
-    </div>
-  </nav>
+        </li> --}}
 </div>
-
+  
+  
 <div id="home">
   <div class="container">
-    
     <div class="row">
       <div class="col-12" style="text-align: center">
         <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-
+        {{!-- <h2>This is our Home Page!</h2>
         <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
           {{#each examples}}
@@ -37,13 +25,40 @@
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
-        </ul>
+        </ul> --}}
       </div>
     </div>
   </div>
 </div>
 
+
+
+<div class="container carFormContainer">˛
+  <div class="row">
+    <div class="container carContainer col-md-9">
+      <img
+        src="https://png2.cleanpng.com/sh/c0d88349aecd9f221d354ccf16a0cee1/L0KzQYm3VMExN5RpiZH0aYP2gLBuTcIxOWkygNH3ZHGwc7r9ifMufKp1fZ97LXPkgn65UME4NZl0htZqLXPshrrqTgR6eJYygNH3ZHGwRbLqgBNnQWFoSqtqOEexQ4qAUMc0Omo2TaQ8M0e0SYO3V8k4OV91htk=/kisspng-2018-honda-civic-type-r-car-2017-honda-civic-type-honda-5acccf90c29a87.3970732915233719207971.png"
+        class="img-fluid">
+    </div>
+
+
+    {{!-- <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form> --}}
+    <div class="container login-page col-md-3">
+      <form class="form login-form">
+        <input id="username" name="username" type="text" placeholder="username" aria-label="username"/>
+        <input id="password" name="password" type="password" placeholder="password" aria-label="password"/>
+        <button id="signin-btn">login</button>
+        <p class="message">Not registered? <a href="/questionaire">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script type="text/javascript">
-</script>
+<script src="js/signin.js"></script>
