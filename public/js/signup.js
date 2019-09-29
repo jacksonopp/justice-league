@@ -1,16 +1,21 @@
 
 document.getElementById("signup-btn").addEventListener("click", (e) => {
-    const body = {
-        first_name: document.getElementById("firstname").value,
-        last_name: document.getElementById("lastname").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value
-    }
-
     e.preventDefault();
-    console.log("click");
-    axios.post("/signup", body).then((response) => {
-        const redirectURL = response.data;
-        window.location.href = redirectURL;
-    });
-})
+    if (document.getElementById("password").value === document.getElementById("confirm-password").value) {
+        console.log("click");
+        const body = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        }
+
+        e.preventDefault();
+        console.log("click");
+        axios.post("/questionaire", body).then((response) => {
+            const redirectURL = response.data;
+            window.location.href = redirectURL;
+        });
+    } else {
+        console.log("didn't match");
+    }
+});

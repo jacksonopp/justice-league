@@ -1,10 +1,12 @@
 document.getElementById("signin-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("click")
     const body = {
-        email: document.getElementById("email").value,
+        email: document.getElementById("username").value,
         password: document.getElementById("password").value
     }
     e.preventDefault();
-    axios.post("/signin", body).then((response) => {
+    axios.post("/", body).then((response) => {
         const redirectURL = response.data;
         console.log(redirectURL);
         window.location.href = redirectURL;

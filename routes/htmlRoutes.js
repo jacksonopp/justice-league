@@ -3,37 +3,26 @@ module.exports = function (app, passport) {
         res.render("index");
     })
 
-    //render signup page
-    app.get("/signup", function (req, res) {
-        res.render("signup");
-    });
+    // app.get("/signin", function (req, res) {
+    //     res.render("signin");
+    // });
 
-    app.get("/signupLink", function (req, res) {
-        res.send("/signup");
+    app.get("/signinFailed", function (req, res) {
+        res.send("/");
     })
-    //post request to sign up (adds new user securely)
-    app.post("/signup", passport.authenticate('local-signup', {
+
+    app.post("/", passport.authenticate("local-signin", {
         successRedirect: "/dashboardLink",
-        failureRedirect: '/signupLink'
+        failureRedirect: "/signinFailed"
     }))
+
+
     //sends the link to redirect on the frontend
     app.get("/dashboardLink", function (req, res) {
         res.send("/dashboard");
     });
 
     //renders the signin page
-    app.get("/signin", function (req, res) {
-        res.render("signin");
-    });
-
-    app.get("/signinLink", function (req, res) {
-        res.send("/signin");
-    })
-
-    app.post("/signin", passport.authenticate("local-signin", {
-        successRedirect: "/dashboardLink",
-        failureRedirect: "/signinLink"
-    }))
 
     //renders the dashboard page
     app.get("/dashboard", isLoggedIn, function (req, res) {
@@ -52,6 +41,16 @@ module.exports = function (app, passport) {
             msg: "Welcome!"
         });
     });
+
+    //post request to sign up (adds new user securely)
+    app.post("/questionaire", passport.authenticate('local-signup', {
+        successRedirect: "/dashboardLink",
+        failureRedirect: '/signupFailed'
+    }))
+
+    app.get("/signupFailed", function (req, res) {
+        res.render("/questionaire");
+    })
 
     app.get("/matches/:id", function (req, res) { });
 

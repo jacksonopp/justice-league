@@ -9,29 +9,30 @@ module.exports = function (passport, user) {
     // creating a local strategy
     passport.use('local-signup', new LocalStrategy(
         {
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
         // callback to gernerate hash and add new user
-        function (req, email, password, done) {
+        function (req, username, password, done) {
             const generateHash = function (password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
             // abstracted sequelize findOne
             User.findOne({
                 where: {
-                    email: email
+                    username: username
                 }
             }).then(function (user) {
                 if (user) {
                     return done(null, false, {
-                        message: 'that email is already taken'
+                        message: 'that username is already taken'
                     });
                 } else {
                     const userPassword = generateHash(password);
                     const data = {
-                        email: email,
+                        username: username,
+                        email: req.body.email,
                         password: userPassword,
                         first_name: req.body.first_name,
                         last_name: req.body.last_name
@@ -70,18 +71,18 @@ module.exports = function (passport, user) {
 
     passport.use("local-signin", new LocalStrategy(
         {
-            usernameField: "email",
+            usernameField: "username",
             passwordField: "password",
             passReqToCallback: true
         },
-        function (req, email, password, done) {
+        function (req, username, password, done) {
             const User = user;
             const isValidPassword = function (userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             }
             User.findOne({
                 where: {
-                    email: email
+                    username: username
                 }
             }).then(function (user) {
                 if (!user) {
