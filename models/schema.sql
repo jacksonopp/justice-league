@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
-
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
-
 ---- database name for app
 drop database if exists redlight_db;
 create database redlight_db;

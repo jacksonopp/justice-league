@@ -7,7 +7,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Sign up</a>
         </li> --}}
+    <a href="/logout">log out &nbsp; | </a>
+    <a href="/dashboard"> &nbsp; Home</a>
 </div>
+
 
 <div class="container" id="userInfoCard">
     <div class="row">
@@ -16,17 +19,23 @@
                 <img src="http://philboxing.com/news/pix/paul.walker.200x200.jpg" width="300" height="300"
                     class="img-fluid" />
             </div>
-                <div class="col-md" id="userBio">
-                    <h1>Paul Walker</h1>
-                    <h3>Minneapolis, MN</h3>
-                </div>
-            <div class="row">
-                <p>"Some people say I love cars so much that nothing else in life matters." 
+            <div class="col-md" id="userBio">
+                {{!-- <h1>Paul Walker</h1>
+                    <h3>Minneapolis, MN</h3> --}}
+            </div>
+            <div class="row" id="userDetails">
+                <p>"Some people say I love cars so much that nothing else in life matters."
                 </p>
+            </div>
+            <div class="row">
+                <button type="input" id="redBtn">Red Light</button>
+                <button type="input" id="greenBtn">Green Light</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/browse.js"></script>
 
 {{!-- <div class="row">
             <div class="col-md-6">
