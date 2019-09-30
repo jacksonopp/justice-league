@@ -1,47 +1,79 @@
-var db = require("../models");
+module.exports = function (app, passport) {
+    app.get("/", function (req, res) {
+        res.render("index");
+    })
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "The only place to find fellow car enthusiasts!",
-        examples: dbExamples
-      });
+    // app.get("/signin", function (req, res) {
+    //     res.render("signin");
+    // });
+
+    app.get("/signinFailed", function (req, res) {
+        res.send("/");
+    })
+
+    //sign in
+    app.post("/", passport.authenticate("local-signin", {
+        successRedirect: "/dashboardLink",
+        failureRedirect: "/signinFailed"
+    }))
+
+
+    //sends the link to redirect on the frontend
+    app.get("/dashboardLink", function (req, res) {
+        res.send("/dashboard");
     });
-  });
 
-  app.get("/questionaire", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("questionaire", {
-        examples: dbExamples
-      });
+    //renders the signin page
+
+    //renders the dashboard page
+    app.get("/dashboard", isLoggedIn, function (req, res) {
+        res.render("dashboard");
     });
-  });
 
-  // Load example page and pass in an example by id
-  app.get("/matches/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("matches", {
-        example: dbExample
-      });
+    //ends the session
+    app.get("/logout", function (req, res) {
+        req.session.destroy(function (err) {
+            res.redirect("/");
+        })
+    })
+
+    app.get("/questionaire", function (req, res) {
+        res.render("questionaire", {
+            msg: "Welcome!"
+        });
     });
-  });
 
-  // Browse all possible matches
-  app.get("/browse", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("browse", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    //post request to sign up (adds new user securely)
+    app.post("/questionaire", passport.authenticate('local-signup', {
+        successRedirect: "/dashboardLink",
+        failureRedirect: '/signupFailed'
+    }))
+
+    app.get("/signupFailed", function (req, res) {
+        res.render("/questionaire");
+    })
+
+    app.get("/matches/:id", function (req, res) { });
+
+    // Browse all possible matches
+    app.get("/browse", function (req, res) {
+        res.render("browse", {
+            msg: "Welcome!",
+            examples: dbExamples
+        });
     });
-  });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-};
+    // Render 404 page for any unmatched routes
+    app.get("*", function (req, res) {
+        res.render("404");
+    });
+
+
+    //checking for logged in middleware
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/');
+    }
+}

@@ -1,42 +1,49 @@
-require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+// imports
+const express = require('express');
+const passport = require('passport');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config();
+const exphb = require('express-handlebars');
 
-var db = require("./models");
+// models
+const db = require("./models");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+// sync database
+db.sequelize.sync().then(() => {
+    console.log("looks good");
+}).catch((err) => {
+    console.log(err, "something went wrong");
+})
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+//set up the app
+const app = express();
+const PORT = process.env.PORT || 5000;
+// middleware
 app.use(express.static("public"));
+// for bodyparser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// for passport
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })) // session secret
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// handlebars
+app.engine("handlebars", exphb({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+// routes
+require("./routes/apiRoutes")(app, passport);
+require("./routes/htmlRoutes")(app, passport);
 
-var syncOptions = { force: false };
+//load passport strategies
+require('./config/passport')(passport, db.User);
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
+app.listen(PORT, function (err) {
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+    if (!err)
+        console.log("Site is live");
+    else console.log(err)
+
 });
-
-module.exports = app;

@@ -51,9 +51,9 @@
     </form> --}}
     <div class="container login-page col-md-3">
       <form class="form login-form">
-        <input type="text" placeholder="username" />
-        <input type="password" placeholder="password" />
-        <button>login</button>
+        <input id="username" name="username" type="text" placeholder="username" aria-label="username"/>
+        <input id="password" name="password" type="password" placeholder="password" aria-label="password"/>
+        <button id="signin-btn">login</button>
         <p class="message">Not registered? <a href="/questionaire">Create an account</a></p>
       </form>
     </div>
@@ -61,13 +61,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script type="text/javascript"></script>
-
-
-
-
-
-
-
-
+<script src="js/signin.js"></script>
