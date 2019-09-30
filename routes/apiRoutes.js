@@ -1,10 +1,12 @@
 var db = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = function(app, passport) {
   // Get all examples
   app.get("/api/all", async function(req, res) {
     try {
-      const users = await db.PrivateTables.findAll({});
+      const users = await db.User.findAll({});
       res.json(users);
       console.log(users);
     } catch (error) {
@@ -15,7 +17,7 @@ module.exports = function(app, passport) {
   // Create a new example  -- use async await
   app.post("/api/examples", async function(req, res) {
     try {
-      const user = await db.PrivateTables.create(req.body);
+      const user = await db.User.create(req.body);
       console.log(user);
     } catch (error) {
       errorResult(error);
@@ -75,11 +77,26 @@ module.exports = function(app, passport) {
       console.log(
         "User with the ID of " + idOfUser1 + " matched with users with ID of "
       );
-      const array = user2;
 
-      for (i = 0; i < array.length; i++) {
-        console.log(array[i].user1 + ", ");
+      for (i = 0; i < user2.length; i++) {
+        console.log(user2[i].user1 + ", ");
       }
+
+      //update db.Matches where user1 && user2 are matches
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  //get request to show all people that are not the user
+
+  app.get("/api/findnewfriends/:userid", async function(req, res) {
+    try {
+      const newFriends = await db.User.findAll({
+        where: { id: { [Op.ne]: req.params.userid } }
+      });
+      res.json(newFriends);
+      console.log(newFriends);
     } catch (error) {
       console.log(error);
     }
