@@ -70,6 +70,26 @@ module.exports = function(app, passport) {
     })
   );
 
+  app.put("/questionaire2", async function(req, res) {
+    console.log(req.body);
+    const userID = await req.user.id;
+    console.log(userID);
+    const user = await db.User.update(
+      {
+        car_model: req.body.car_model,
+        image: req.body.img,
+        city: req.body.city,
+        about: req.body.about
+      },
+      {
+        where: {
+          id: userID
+        }
+      }
+    );
+    res.send("connected");
+  });
+
   app.get("/questionaireLink", function(req, res) {
     res.send("/questionaire2");
   });
