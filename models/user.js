@@ -31,6 +31,18 @@ module.exports = function(sequelize, DataTypes) {
     status: {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active"
+    },
+    car_model: {
+      type: DataTypes.TEXT
+    },
+    image: {
+      type: DataTypes.STRING
+    },
+    city: {
+      type: DataTypes.STRING
+    },
+    about: {
+      type: DataTypes.TEXT
     }
   });
   return User;

@@ -180,9 +180,11 @@ h1 {
   height: 50px;
   margin: 50px;
   padding-bottom: 90px;
+  box-shadow: none;
+  border: none;
 }
 
-#browseBtn,
+#browseBtn:hover,
 #matchBtn:hover {
   cursor: pointer;
 }
@@ -218,6 +220,10 @@ a {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+.card-body {
+  border: 1px solid rgb(51, 113, 128);
+}
+
 #RGBtn {
   display: flex;
   justify-content: space-between;
@@ -230,6 +236,8 @@ a {
   height: 100px;
   color: white;
   border-radius: 50%;
+  box-shadow: none;
+  border: none;
 }
 
 #greenBtn {
@@ -239,6 +247,18 @@ a {
   height: 100px;
   color: white;
   border-radius: 50%;
+  box-shadow: none;
+  border: none;
+}
+
+#greenBtn,
+#redBtn:hover {
+  cursor: pointer;
+}
+
+#greenBtn,
+#redBtn:focus {
+  outline: none;
 }
 
 #userDetails {
