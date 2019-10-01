@@ -3,6 +3,35 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function(app, passport) {
+  //get all users
+  app.get("/api/users", async function(req, res) {
+    const body = await { currentUser: req.user.id };
+    const userArr = [];
+    const matches = await db.Matches.findAll({
+      where: {
+        user1: {
+          [Op.ne]: req.user.id
+        }
+        // complete: false
+      }
+    });
+    body.matches = matches;
+    matches.forEach(user => {
+      userArr.push(user.dataValues.user1);
+    });
+    const usersUniqueArr = userArr.filter((elem, index, self) => {
+      return index === self.indexOf(elem);
+    });
+
+    const usersToSend = await db.User.findAll({
+      where: {
+        id: usersUniqueArr
+      }
+    });
+    console.log(usersToSend);
+    res.send(usersToSend);
+  });
+
   // Get all examples
   app.get("/api/all", async function(req, res) {
     try {

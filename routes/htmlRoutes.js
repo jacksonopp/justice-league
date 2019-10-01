@@ -85,6 +85,7 @@ module.exports = function(app, passport) {
     });
   });
 
+<<<<<<< HEAD
   app.get("/test", isLoggedIn, function(req, res) {
     res.render("test");
   });
@@ -94,6 +95,13 @@ module.exports = function(app, passport) {
     res.render("404");
   });
 
+=======
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
+
+>>>>>>> fa078446aef38c5948bcc55f337aa3d6fe053a94
   //checking for logged in middleware
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
