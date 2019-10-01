@@ -1,5 +1,6 @@
 const db = require("../models");
 const moment = require("moment");
+const request = require("request");
 
 module.exports = function(app, passport) {
   app.get("/", function(req, res) {
@@ -103,15 +104,19 @@ module.exports = function(app, passport) {
     res.render("/questionaire");
   });
 
-  app.get("/matches", function(req, res) {
+  app.get("/matches", async function(req, res) {
+    //get data and int
+    const data = await request("/api/matches", (err, response, body) => {
+      if (err) throw err;
+      console.log("status code:", response && response.statusCode);
+      console.log(body);
+    });
     res.render("matches");
   });
 
   // Browse all possible matches
   app.get("/browse", isLoggedIn, function(req, res) {
-    res.render("browse", {
-      msg: "Welcome!"
-    });
+    res.render("browse");
   });
 
   app.get("/test", isLoggedIn, function(req, res) {

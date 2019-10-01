@@ -1,18 +1,8 @@
-function submit(answer) {
-  let yesOrNo = true;
-  switch (answer) {
-    case "yes":
-      yesOrNo = true;
-      break;
-    case "no":
-      yesOrNo = false;
-      break;
-    default:
-      yesOrNo = true;
-  }
-  const id = document.getElementById("number").value;
-
-  axios.post("/api/matches/" + yesOrNo, { id, yesOrNo }).then(response => {
-    console.log(response);
+axios.get("/").then(function(response) {
+  response.forEach(user => {
+    const userInfo = document.getElementById("userInfo");
+    const userName = document.createElement("h2");
+    userName.innerText = user.data.username;
+    userInfo.append(userName);
   });
-}
+});
