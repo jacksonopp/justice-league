@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function(app, passport) {
-  //get all users for the browse
+  //get all users for the browse page
   try {
     app.get("/api/users", async function(req, res) {
       // set up an array to save matches
@@ -41,8 +41,11 @@ module.exports = function(app, passport) {
   }
 
   app.post("/api/matches/:yesOrNo", async function(req, res) {
+    // keeps track of wether or not the user said yes or no on another user
     const yesOrNo = await req.params.yesOrNo;
     try {
+      // checks if the other person said yes
+      // this is if the user previously said no, then changed their answer
       const matches = await db.Matches.findAll({
         where: {
           user2: req.user.id,
@@ -51,6 +54,7 @@ module.exports = function(app, passport) {
         }
       });
       console.log("matches:", matches.length);
+      // this checks whether the user has previously voted on their potential match
       const exists = await db.Matches.findAll({
         where: {
           user1: req.user.id,
@@ -63,6 +67,8 @@ module.exports = function(app, passport) {
         case "true":
           console.log(req.body.id);
           //find out if there are matches
+          // this is the case where the user previously said no and then switched their answer
+
           // if there is a match
           if (matches.length !== 0) {
             // update the other one's complete to true
@@ -75,7 +81,7 @@ module.exports = function(app, passport) {
                 }
               }
             );
-            // if does not exists
+            // if this is the first time the user has voted
             if (exists.length === 0) {
               // create a new entry
               await db.Matches.create({
@@ -84,9 +90,9 @@ module.exports = function(app, passport) {
                 yes_or_no: req.body.yesOrNo,
                 complete: true
               });
-              // if it does exist
+              // if this is NOT the first time the user has voted
             } else {
-              //update the existing entry
+              // update the existing entry
               await db.Matches.update(
                 {
                   user1: req.user.id,
@@ -103,7 +109,7 @@ module.exports = function(app, passport) {
               );
             }
             res.send(matches);
-            // if there is no match, but the entry does exist
+            // if there is no match, but user has voted before
           } else if (exists.length !== 0) {
             //update the existing entry
             const updateEntry = await db.Matches.update(
@@ -120,7 +126,7 @@ module.exports = function(app, passport) {
               }
             );
             res.send(updateEntry);
-            // if there is no match and the entry does not exist
+            // if there is no match and the user hasn't voted before
           } else {
             //create a new entry
             const newEntry = await db.Matches.create({
@@ -130,8 +136,11 @@ module.exports = function(app, passport) {
             });
             res.send(newEntry);
           }
+        //if the user votes no
         case "false":
+          // if the user has voted before
           if (exists.length !== 0) {
+            // update their answer with the new answer
             const updateEntry = await db.Matches.update(
               {
                 user1: req.user.id,
@@ -146,12 +155,15 @@ module.exports = function(app, passport) {
               }
             );
             res.send(updateEntry);
+            // if the user hasn't voted before
           } else {
+            //make a new entry
             const newEntry = await db.Matches.create({
               user1: req.user.id,
               user2: req.body.id,
               yes_or_no: req.body.yesOrNo
             });
+            res.send(newEntry);
           }
       }
       // console.log(matches);
