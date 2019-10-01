@@ -10,8 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     complete: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
+    },
+    yes_or_no: {
+      type: DataTypes.BOOLEAN,
+      notEmpty: true
     }
   });
   return Matches;
