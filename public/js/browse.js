@@ -6,6 +6,8 @@ function getUsers() {
     let j = 0;
     let k = 0;
     let l = 0;
+    let m = 0;
+    let n = 0;
 
     function newUserName() {
       i++;
@@ -18,49 +20,67 @@ function getUsers() {
     function newUserAbout() {
       j++;
       j = j % response.data.length;
-      console.log(response.data[i].about);
+      console.log(response.data[j].about);
 
-      return response.data[i].about;
+      return response.data[j].about;
     }
 
     function newUserImage() {
       k++;
       k = k % response.data.length;
-      console.log(response.data[i].image);
+      console.log(response.data[k].image);
 
-      return response.data[i].status;
+      return response.data[k].image;
     }
 
-    function newUserId() {
-      i++;
-      i = i % response.data.length;
-      // console.log(response.data[i].image);
-
-      return response.data[i].id;
-    }
-
-    function newUserId() {
+    function newUserCar() {
       l++;
       l = l % response.data.length;
-      console.log(response.data[i].id);
+      console.log(response.data[l].car_model);
 
-      return response.data[i].id;
+      return response.data[l].car_model;
+    }
+
+    function newUserCity() {
+      m++;
+      m = m % response.data.length;
+      console.log(response.data[m].city);
+
+      return response.data[m].city;
+    }
+
+    function newUserEmail() {
+      l++;
+      l = l % response.data.length;
+      console.log(response.data[l].email);
+
+      return response.data[l].email;
+    }
+
+    function newUserId() {
+      n++;
+      n = n % response.data.length;
+      console.log(response.data[n].id);
+
+      return response.data[n].id;
     }
 
     document
       .getElementById("greenBtn")
       .addEventListener("click", function(event) {
         document.getElementById("cardUsername").innerHTML = newUserName();
-
+        document.getElementById("cardUserCar").innerHTML = newUserCar();
+        document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
-          .setAttribute("src", newUserImage);
+          .setAttribute("src", newUserImage());
         axios
           .post("/api/matches/" + true, { id: newUserId(), yesOrNo: true })
-          .then(function() {});
-
-        axios.post("/id").then(function() {});
+          .then(function(response) {
+            console.log(response);
+          });
 
         //make axios post or put call to send to matched
       });
@@ -68,20 +88,18 @@ function getUsers() {
     document
       .getElementById("redBtn")
       .addEventListener("click", function(event) {
-        axios
-          .post("/api/matches/" + false, {
-            id: response.data[i].id,
-            yesOrNo: false
-          })
-          .then(function() {});
         document.getElementById("cardUsername").innerHTML = newUserName();
+        document.getElementById("cardUserCar").innerHTML = newUserCar();
+        document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
           .getElementById("cardUserImg")
-          .setAttribute("src", newUserImage);
-        console.log(newUserId());
-        axios.post("/id").then(function() {});
-        //make axios post or put call to send to disliked
+          .setAttribute("src", newUserImage());
+        axios
+          .post("/api/matches/" + false, { id: newUserId(), yesOrNo: false })
+          .then(function(response) {
+            console.log(response);
+          });
       });
   });
 }
