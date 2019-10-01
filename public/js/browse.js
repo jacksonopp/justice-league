@@ -1,42 +1,59 @@
 console.log("is loaded");
 
-const userArr = [
-  {
-    userName: "userName",
-    carURL: "carURL",
-    make: "make"
-  },
-  {
-    userName: "Paul Walker",
-    carURL: "Nissan",
-    make: "was"
-  }
-];
+function getUsers() {
+  axios.get("api/users").then(function(response) {
+    let i = 0;
 
-let i = 0;
+    function newUserName() {
+      i++;
+      i = i % response.data.length;
+      console.log(response.data[i].username);
 
-function newUser() {
-  i++;
-  i = i % userArr.length;
-  return userArr[i].userName;
+      return response.data[i].username;
+    }
+
+    function newUserAbout() {
+      // i++;
+      i = i % response.data.length;
+      console.log(response.data[i].about);
+
+      return response.data[i].about;
+    }
+
+    function newUserImage() {
+      i++;
+      i = i % response.data.length;
+      console.log(response.data[i].image);
+
+      return response.data[i].image;
+    }
+
+    document
+      .getElementById("greenBtn")
+      .addEventListener("click", function(event) {
+        axios.post("/id").then(function() {});
+        document.getElementById("cardUsername").innerHTML = newUserName();
+        document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+        document
+          .getElementById("cardUserImg")
+          .setAttribute("src", newUserImage);
+
+        //make axios post or put call to send to matched
+      });
+
+    document
+      .getElementById("redBtn")
+      .addEventListener("click", function(event) {
+        axios.post("/id").then(function() {});
+        document.getElementById("cardUsername").innerHTML = newUserName();
+        document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+        document
+          .getElementById("cardUserImg")
+          .setAttribute("src", newUserImage);
+
+        //make axios post or put call to send to disliked
+      });
+  });
 }
 
-function lastUser() {
-  if (i === 0) {
-    // i would become 0
-    i = arr.length; // so put it at the other end of the array
-  }
-  i--;
-  return userArr[i].userName;
-}
-
-document.getElementById("greenBtn").addEventListener("click", function(event) {
-  document.getElementById("userDetails").innerText = newUser();
-  document.createElement("button");
-});
-
-console.log(userArr.userName);
-
-userArr.forEach(function(user) {
-  document.getElementById("userBio").innerHTML = user.userName;
-});
+getUsers();
