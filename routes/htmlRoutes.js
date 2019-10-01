@@ -64,11 +64,19 @@ module.exports = function(app, passport) {
     "/questionaire",
     passport.authenticate("local-signup", {
       //if it worked, go to dashboard
-      successRedirect: "/dashboardLink",
+      successRedirect: "/questionaireLink",
       // if it didnt work
       failureRedirect: "/signupFailed"
     })
   );
+
+  app.get("/questionaireLink", function(req, res) {
+    res.send("/questionaire2");
+  });
+
+  app.get("/questionaire2", isLoggedIn, function(req, res) {
+    res.render("questionaire2");
+  });
 
   // on failure, redirect to questionaire to try again
   app.get("/signupFailed", function(req, res) {
@@ -80,7 +88,7 @@ module.exports = function(app, passport) {
   });
 
   // Browse all possible matches
-  app.get("/browse", function(req, res) {
+  app.get("/browse", isLoggedIn, function(req, res) {
     res.render("browse", {
       msg: "Welcome!"
     });

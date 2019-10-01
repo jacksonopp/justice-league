@@ -3,6 +3,9 @@ console.log("is loaded");
 function getUsers() {
   axios.get("api/users").then(function(response) {
     let i = 0;
+    let j = 0;
+    let k = 0;
+    let l = 0;
 
     function newUserName() {
       i++;
@@ -13,30 +16,41 @@ function getUsers() {
     }
 
     function newUserAbout() {
-      // i++;
-      i = i % response.data.length;
+      j++;
+      j = j % response.data.length;
       console.log(response.data[i].about);
 
       return response.data[i].about;
     }
 
     function newUserImage() {
-      i++;
-      i = i % response.data.length;
+      k++;
+      k = k % response.data.length;
       console.log(response.data[i].image);
 
       return response.data[i].image;
     }
 
+    function newUserId() {
+      l++;
+      l = l % response.data.length;
+      console.log(response.data[i].id);
+
+      return response.data[i].id;
+    }
+
     document
       .getElementById("greenBtn")
       .addEventListener("click", function(event) {
-        axios.post("/id").then(function() {});
         document.getElementById("cardUsername").innerHTML = newUserName();
+
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage);
+        axios
+          .post("/api/matches/" + true, { id: newUserId(), yesOrNo: true })
+          .then(function() {});
 
         //make axios post or put call to send to matched
       });
@@ -44,7 +58,12 @@ function getUsers() {
     document
       .getElementById("redBtn")
       .addEventListener("click", function(event) {
-        axios.post("/id").then(function() {});
+        axios
+          .post("/api/matches/" + false, {
+            id: response.data[i].id,
+            yesOrNo: false
+          })
+          .then(function() {});
         document.getElementById("cardUsername").innerHTML = newUserName();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
