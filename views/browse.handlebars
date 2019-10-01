@@ -1,38 +1,49 @@
 <div class="container-fullwidth" id="navbarHeader">
     <img class="logoImg" src="https://www.pngrepo.com/png/126491/170/traffic-light.png" height="50px" width="50px">
-    {{!-- <li class="nav-item active">
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-          <button onclick="signOut()">sign out</button>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Sign up</a>
-        </li> --}}
+    <a href="/logout">log out &nbsp; | </a>
+    <a href="/dashboard"> &nbsp; Home &nbsp; | </a>
+    <a href="/matches"> &nbsp; Matches</a>
 </div>
 
-<div class="container" id="userInfoCard">
-    <div class="row">
-        <div class="col-md">
-            <div id="userImage">
-                <img src="http://philboxing.com/news/pix/paul.walker.200x200.jpg" width="300" height="300"
-                    class="img-fluid" />
-            </div>
-                <div class="col-md" id="userBio">
-                    <h1>Paul Walker</h1>
-                    <h3>Minneapolis, MN</h3>
-                </div>
-            <div class="row">
-                <p>"Some people say I love cars so much that nothing else in life matters." 
-                </p>
-            </div>
+
+<div class="container col-md-6" id="userInfoCard">
+
+    <div class="card" style="width: 100%; margin-bottom: 40px;">
+        <img id="cardUserImg" src="" class="card-img-top img-fluid" alt="...">
+        <div class="card-body">
+            {{#each browse}}
+            {{browse.getUsers}}
+            {{/each}}
+            <h5 class="card-title" id="cardUsername">Card title</h5>
+            <p class="card-text" id="cardUserAbout">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
         </div>
+    </div>
+
+
+    {{!-- <div class="row" id="userBio">
+        {{#each browse}}
+        <div class="col-md">
+            {{browse.getUsers}}
+        </div>
+        {{/each}}
+
+        <div class="row">
+            <h4 id="userDetails"></h4>
+        </div> --}}
+    <div class="row" id="RGBtn">
+        <button type="input" id="redBtn">Red Light</button>
+        <button type="input" id="greenBtn">Green Light</button>
     </div>
 </div>
 
-{{!-- <div class="row">
-            <div class="col-md-6">
-                <a href="">red light</a>
-            </div>
-            <div class="col-md-6">
-                <a href="">red light</a>
-            </div>
-        </div> --}}
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"
+    integrity="sha256-XmdRbTre/3RulhYk/cOBUMpYlaAp2Rpo/s556u0OIKk=" crossorigin="anonymous"></script>
+
+<script src="/js/browse.js"></script>

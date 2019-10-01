@@ -1,5 +1,6 @@
 body {
-  background: rgb(211, 208, 208); /* fallback for old browsers */
+  background: rgb(211, 208, 208);
+  /* fallback for old browsers */
   background: -webkit-linear-gradient(right, rgb(211, 208, 208));
   background: -moz-linear-gradient(right, rgb(211, 208, 208));
   background: -o-linear-gradient(right, rgb(211, 208, 208));
@@ -35,15 +36,14 @@ h1 {
 /* sign in form */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
 }
+
 .form {
   position: relative;
-
   width: 300px;
   height: 400px;
   z-index: 1;
@@ -54,6 +54,7 @@ h1 {
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -65,6 +66,7 @@ h1 {
   box-sizing: border-box;
   font-size: 14px;
 }
+
 .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -79,23 +81,28 @@ h1 {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .form button:hover,
 .form button:active,
 .form button:focus {
-  background: rgb(44, 99, 112);
+  background: rgb(51, 113, 128);
 }
+
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
+
 .form .message a {
   color: rgb(51, 113, 128);
   text-decoration: none;
 }
+
 .form .register-form {
   display: none;
 }
+
 .container .login-page {
   position: relative;
   z-index: 1;
@@ -103,16 +110,19 @@ h1 {
   margin: 0 auto;
   margin-top: -25px;
 }
+
 .container:before,
 .container:after {
   content: "";
   display: block;
   clear: both;
 }
+
 .container .info {
   margin: 50px auto;
   text-align: center;
 }
+
 .container .info h1 {
   margin: 0 0 15px;
   padding: 0;
@@ -120,14 +130,17 @@ h1 {
   font-weight: 300;
   color: #1a1a1a;
 }
+
 .container .info span {
   color: #4d4d4d;
   font-size: 12px;
 }
+
 .container .info span a {
   color: #000000;
   text-decoration: none;
 }
+
 .container .info span .fa {
   color: #ef3b3a;
 }
@@ -158,4 +171,90 @@ h1 {
   background: white;
   padding: 20px;
   margin: 7% auto;
+}
+
+#browseBtn,
+#matchBtn {
+  background: rgb(51, 113, 128);
+  color: white;
+  height: 50px;
+  margin: 50px;
+  padding-bottom: 90px;
+}
+
+#browseBtn,
+#matchBtn:hover {
+  cursor: pointer;
+}
+
+#browseBtn {
+  margin-left: 35%;
+}
+
+#matchBtn {
+  margin-right: 35%;
+}
+
+.buttonForm {
+  width: 100%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+#ferrariImg {
+  text-align: center;
+  margin-top: 50px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a {
+  color: rgb(51, 113, 128);
+}
+
+#userInfoCard {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#RGBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+#redBtn {
+  background: rgb(241, 93, 93);
+  margin-left: 7%;
+  width: 100px;
+  height: 100px;
+  color: white;
+  border-radius: 50%;
+}
+
+#greenBtn {
+  background: rgb(44, 191, 95);
+  margin-right: 7%;
+  width: 100px;
+  height: 100px;
+  color: white;
+  border-radius: 50%;
+}
+
+#userDetails {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+#userBio {
+  border: 1px solid black;
+  height: 350px;
+  margin-bottom: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
+#dashboardDiv {
+  display: flex;
 }

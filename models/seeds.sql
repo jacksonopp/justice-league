@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 INSERT INTO privatetables (email, actual_location, contact, createdAt, updatedAt) VALUES ("fake@fake.fke", "Saint Paul, MN", "Phone: 952-555-1234", '2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000');
 INSERT INTO privatetables (email, actual_location, contact, createdAt, updatedAt) VALUES ("fakeuser2@fake.fke", "Bloomington, MN", "Phone: 952-555-1233", '2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000');
 INSERT INTO privatetables (email, actual_location, contact, createdAt, updatedAt) VALUES ("fakeuser3@fake.fke", "MPLS, MN", "Phone: 952-555-2234", '2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000');
@@ -22,3 +24,4 @@ INSERT INTO matches (user1, user2,createdAt, updatedAt) VALUES (2,1,'2011-04-12T
 INSERT INTO matches (user1, user2,createdAt, updatedAt) VALUES (1,8,'2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000' );
 INSERT INTO matches (user1, user2,createdAt, updatedAt) VALUES (1,6,'2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000' );
 INSERT INTO matches (user1, user2,createdAt, updatedAt) VALUES (1,4,'2011-04-12T00:00:00.000', '2011-04-12T00:00:00.000' );
+>>>>>>> fa078446aef38c5948bcc55f337aa3d6fe053a94

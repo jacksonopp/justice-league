@@ -3,87 +3,171 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function(app, passport) {
-  //get all users
-  app.get("/api/users", async function(req, res) {
-    const body = await { currentUser: req.user.id };
-    const userArr = [];
-    const matches = await db.Matches.findAll({
-      where: {
-        user1: {
-          [Op.ne]: req.user.id
-        }
-        // complete: false
-      }
-    });
-    body.matches = matches;
-    matches.forEach(user => {
-      userArr.push(user.dataValues.user1);
-    });
-    const usersUniqueArr = userArr.filter((elem, index, self) => {
-      return index === self.indexOf(elem);
-    });
-
-    const usersToSend = await db.User.findAll({
-      where: {
-        id: usersUniqueArr
-      }
-    });
-    console.log(usersToSend);
-    res.send(usersToSend);
-  });
-
-  // Get all examples
-  app.get("/api/all", async function(req, res) {
-    try {
-      const users = await db.PrivateTables.findAll({});
-      res.json(users);
-      console.log(users);
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
-  // Create a new example  -- use async await
-  app.post("/api/examples", async function(req, res) {
-    try {
-      const user = await db.PrivateTables.create(req.body);
-      console.log(user);
-    } catch (error) {
-      errorResult(error);
-    }
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.PrivateTables.destroy({ where: { id: req.params.id } }).then(function(
-      PrivateTables
-    ) {
-      res.json(PrivateTables);
-    });
-  });
-
-  app.post("/api/private", async function(req, res) {
-    try {
-      const userCheck = await db.PrivateTables.findAll({
+  //get all users for the browse page
+  try {
+    app.get("/api/users", async function(req, res) {
+      // set up an array to save matches
+      const matchArr = [];
+      // find all other users that the current user matched with
+      const matches = await db.Matches.findAll({
         where: {
-          email: req.body.email
+          // completed happened
+          complete: true,
+          // for the current user
+          user1: req.user.id
         }
       });
-      if (userCheck.length < 1) {
-        const newUser = await db.PrivateTables.create({
-          email: req.body.email,
-          img_url: req.body.imageUrl,
-          user_full_name: req.body.name
-        });
-        res.send({ redirectURL: "/questionaire" });
-        console.log("created a new user");
-      } else {
-        res.send({ redirectURL: "www.google.com" });
-        console.log("did not create a new user");
+
+      //push all matches to matchArr
+      matches.forEach(user => {
+        matchArr.push(user.dataValues.user2);
+      });
+      //push the current user to matchArr
+      matchArr.push(req.user.id);
+      console.log("matchArr:", matchArr);
+
+      // this is the array of users to send
+      const usersToSend = await db.User.findAll({
+        where: {
+          id: {
+            [Op.notIn]: matchArr
+          }
+        }
+      });
+      res.json(usersToSend);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  app.post("/api/matches/:yesOrNo", async function(req, res) {
+    // keeps track of wether or not the user said yes or no on another user
+    const yesOrNo = await req.params.yesOrNo;
+    try {
+      // checks if the other person said yes
+      // this is if the user previously said no, then changed their answer
+      const matches = await db.Matches.findAll({
+        where: {
+          user2: req.user.id,
+          user1: req.body.id,
+          yes_or_no: true
+        }
+      });
+      console.log("matches:", matches.length);
+      // this checks whether the user has previously voted on their potential match
+      const exists = await db.Matches.findAll({
+        where: {
+          user1: req.user.id,
+          user2: req.body.id
+        }
+      });
+      console.log("exists:", exists.length);
+      // switch case
+      switch (yesOrNo) {
+        case "true":
+          console.log(req.body.id);
+          //find out if there are matches
+          // this is the case where the user previously said no and then switched their answer
+
+          // if there is a match
+          if (matches.length !== 0) {
+            // update the other one's complete to true
+            await db.Matches.update(
+              { complete: true },
+              {
+                where: {
+                  user2: req.user.id,
+                  user1: req.body.id
+                }
+              }
+            );
+            // if this is the first time the user has voted
+            if (exists.length === 0) {
+              // create a new entry
+              await db.Matches.create({
+                user1: req.user.id,
+                user2: req.body.id,
+                yes_or_no: req.body.yesOrNo,
+                complete: true
+              });
+              // if this is NOT the first time the user has voted
+            } else {
+              // update the existing entry
+              await db.Matches.update(
+                {
+                  user1: req.user.id,
+                  user2: req.body.id,
+                  yes_or_no: req.body.yesOrNo,
+                  complete: true
+                },
+                {
+                  where: {
+                    user1: req.user.id,
+                    user2: req.body.id
+                  }
+                }
+              );
+            }
+            res.send(matches);
+            // if there is no match, but user has voted before
+          } else if (exists.length !== 0) {
+            //update the existing entry
+            const updateEntry = await db.Matches.update(
+              {
+                user1: req.user.id,
+                user2: req.body.id,
+                yes_or_no: req.body.yesOrNo
+              },
+              {
+                where: {
+                  user1: req.user.id,
+                  user2: req.body.id
+                }
+              }
+            );
+            res.send(updateEntry);
+            // if there is no match and the user hasn't voted before
+          } else {
+            //create a new entry
+            const newEntry = await db.Matches.create({
+              user1: req.user.id,
+              user2: req.body.id,
+              yes_or_no: req.body.yesOrNo
+            });
+            res.send(newEntry);
+          }
+        //if the user votes no
+        case "false":
+          // if the user has voted before
+          if (exists.length !== 0) {
+            // update their answer with the new answer
+            const updateEntry = await db.Matches.update(
+              {
+                user1: req.user.id,
+                user2: req.body.id,
+                yes_or_no: req.body.yesOrNo
+              },
+              {
+                where: {
+                  user1: req.user.id,
+                  user2: req.body.id
+                }
+              }
+            );
+            res.send(updateEntry);
+            // if the user hasn't voted before
+          } else {
+            //make a new entry
+            const newEntry = await db.Matches.create({
+              user1: req.user.id,
+              user2: req.body.id,
+              yes_or_no: req.body.yesOrNo
+            });
+            res.send(newEntry);
+          }
       }
-      // res.json(userCheck)
+      // console.log(matches);
     } catch (error) {
-      res.send(error);
       console.log(error);
     }
   });
