@@ -1,7 +1,26 @@
-<h2>Dashboard</h2>
-<h5>You signed in!</h5>
-<p>hello {{username}}</p>
-<p>you last logged in {{last_login}}</p>
-<a href="/logout">log out</a>
+<div class="container-fullwidth" id="navbarHeader">
+    <img class="logoImg" src="https://www.pngrepo.com/png/126491/170/traffic-light.png" height="50px" width="50px">
+    <a href="/logout">log out &nbsp; | </a>
+    <a href="/matches"> &nbsp; Matches &nbsp; | </a>
+    <a href="/browse"> &nbsp; Browse </a>
 
-<script src="js/dashboard.js"></script>
+</div>
+
+<h1 style="text-align: center">What would you like to do?</h1>
+
+<div class="col-12" id="dashboardDiv">
+    <form class="buttonForm" style="display: inline" action="/browse" method="get">
+        <button id="browseBtn" class="form">
+            <h4>Find your future race partner</h4>
+        </button>
+    </form>
+    <form class="buttonForm" style="display: inline" action="/matches" method="get">
+        <button id="matchBtn" class="form">
+            <h4>See your existing matches</h4>
+        </button>
+    </form>
+</div>
+
+<div id="ferrariImg">
+    <img src="http://pngimg.com/uploads/ferrari/ferrari_PNG10680.png" class="img-fluid" />
+</div>

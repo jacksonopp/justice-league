@@ -75,14 +75,19 @@ module.exports = function(app, passport) {
     res.render("/questionaire");
   });
 
-  app.get("/matches/:id", function(req, res) {});
+  app.get("/matches", function(req, res) {
+    res.render("matches");
+  });
 
   // Browse all possible matches
   app.get("/browse", function(req, res) {
     res.render("browse", {
-      msg: "Welcome!",
-      examples: dbExamples
+      msg: "Welcome!"
     });
+  });
+
+  app.get("/test", isLoggedIn, function(req, res) {
+    res.render("test");
   });
 
   // Render 404 page for any unmatched routes
