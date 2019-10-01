@@ -101,4 +101,26 @@ module.exports = function(app, passport) {
       console.log(error);
     }
   });
+
+  // Post Request   -- use async await --
+  //receive request from front end to ccheck to see if match exist, if no math exist, then
+  /*
+  Pseduocode: 
+  1. Receive a post requests with the users name or users unique ID.
+  2. get newest inputted friends in the database first
+  3. if no match found then display that friend option to user
+  4. If match then skip to the next item in the table and compare
+  5.
+  */
+  app.post("/api/browse", async function(req, res) {
+    try {
+      console.log(req);
+
+      ///
+      //const user = await db.User.create(req.body);
+      //console.log(user);
+    } catch (error) {
+      errorResult(error);
+    }
+  });
 };
