@@ -28,7 +28,15 @@ function getUsers() {
       k = k % response.data.length;
       console.log(response.data[i].image);
 
-      return response.data[i].image;
+      return response.data[i].status;
+    }
+
+    function newUserId() {
+      i++;
+      i = i % response.data.length;
+      // console.log(response.data[i].image);
+
+      return response.data[i].id;
     }
 
     function newUserId() {
@@ -52,6 +60,8 @@ function getUsers() {
           .post("/api/matches/" + true, { id: newUserId(), yesOrNo: true })
           .then(function() {});
 
+        axios.post("/id").then(function() {});
+
         //make axios post or put call to send to matched
       });
 
@@ -69,7 +79,8 @@ function getUsers() {
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage);
-
+        console.log(newUserId());
+        axios.post("/id").then(function() {});
         //make axios post or put call to send to disliked
       });
   });
