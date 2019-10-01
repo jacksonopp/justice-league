@@ -80,7 +80,7 @@ module.exports = function(app, passport) {
   });
 
   // Browse all possible matches
-  app.get("/browse", function(req, res) {
+  app.get("/browse", isLoggedIn, function(req, res) {
     res.render("browse", {
       msg: "Welcome!"
     });

@@ -23,20 +23,29 @@ function getUsers() {
     function newUserImage() {
       i++;
       i = i % response.data.length;
-      console.log(response.data[i].image);
+      console.log(response.data[i].status);
 
-      return response.data[i].image;
+      return response.data[i].status;
+    }
+
+    function newUserId() {
+      i++;
+      i = i % response.data.length;
+      // console.log(response.data[i].image);
+
+      return response.data[i].id;
     }
 
     document
       .getElementById("greenBtn")
       .addEventListener("click", function(event) {
-        axios.post("/id").then(function() {});
         document.getElementById("cardUsername").innerHTML = newUserName();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage);
+
+        axios.post("/id").then(function() {});
 
         //make axios post or put call to send to matched
       });
@@ -44,13 +53,13 @@ function getUsers() {
     document
       .getElementById("redBtn")
       .addEventListener("click", function(event) {
-        axios.post("/id").then(function() {});
         document.getElementById("cardUsername").innerHTML = newUserName();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage);
-
+        console.log(newUserId());
+        axios.post("/id").then(function() {});
         //make axios post or put call to send to disliked
       });
   });
