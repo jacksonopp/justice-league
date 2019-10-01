@@ -8,6 +8,7 @@ function getUsers() {
     let l = 0;
     let m = 0;
     let n = 0;
+    let o = 0;
 
     function newUserName() {
       i++;
@@ -50,16 +51,16 @@ function getUsers() {
     }
 
     function newUserEmail() {
-      l++;
-      l = l % response.data.length;
+      n++;
+      n = n % response.data.length;
       console.log(response.data[l].email);
 
       return response.data[l].email;
     }
 
     function newUserId() {
-      n++;
-      n = n % response.data.length;
+      o++;
+      o = o % response.data.length;
       console.log(response.data[n].id);
 
       return response.data[n].id;
