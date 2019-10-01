@@ -7,6 +7,14 @@ module.exports = function(sequelize, DataTypes) {
     user2: {
       type: DataTypes.INTEGER,
       notEmpty: true
+    },
+    complete: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    yes_or_no: {
+      type: DataTypes.BOOLEAN,
+      notEmpty: true
     }
   });
   return Matches;
