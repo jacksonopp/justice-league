@@ -103,7 +103,7 @@ module.exports = function(app, passport) {
     res.render("/questionaire");
   });
 
-  app.get("/matches", async function(req, res) {
+  app.get("/matches", isLoggedIn, async function(req, res) {
     //get data and int
     res.render("matches");
   });
@@ -113,9 +113,9 @@ module.exports = function(app, passport) {
     res.render("browse");
   });
 
-  app.get("/test", isLoggedIn, function(req, res) {
-    res.render("test");
-  });
+  // app.get("/test", isLoggedIn, function (req, res) {
+  //   res.render("test");
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
