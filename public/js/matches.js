@@ -2,6 +2,10 @@ axios.get("/api/matches").then(function(response) {
   console.log(response.data);
   response.data.forEach(user => {
     const userInfo = document.getElementById("userInfo");
+    const userDiv = document.createElement("div");
+    userDiv.setAttribute("class", "userDiv");
+    userInfo.append(userDiv);
+
     const userImage = document.createElement("img");
     const userName = document.createElement("div");
     const userEmail = document.createElement("div");
@@ -19,9 +23,9 @@ axios.get("/api/matches").then(function(response) {
     userAbout.setAttribute("class", "matchesAbout");
     userAbout.innerHTML = user[0].about;
 
-    userInfo.append(userImage);
-    userInfo.append(userName);
-    userInfo.append(userEmail);
-    userInfo.append(userAbout);
+    userDiv.append(userImage);
+    userDiv.append(userName);
+    userDiv.append(userEmail);
+    userDiv.append(userAbout);
   });
 });

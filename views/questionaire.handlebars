@@ -1,12 +1,61 @@
 <div class="container-fullwidth" id="navbarHeader">
     <img class="logoImg" src="https://www.pngrepo.com/png/126491/170/traffic-light.png" height="50px" width="50px">
-    <a href="/dashboard"> &nbsp; Home </a>
+    <a href="/dashboard"> &nbsp; Login </a>
 </div>
 
 <div class="container">
     <h1 id="questionH1">Tell us more about yourself so we can help you find people just as passionate about HP and
         Torque as you are</h1>
 </div>
+
+<div id="emailModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ruh Roh!</h5>
+            </div>
+            <div class="modal-body">
+                <p>Please enter a valid email</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modalClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="passwordModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ruh Roh!</h5>
+            </div>
+            <div class="modal-body">
+                <p>Your passwords dont match</p>
+            </div>
+            <div class="modal-footer">
+                <button id="passwordClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="emptyInputModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ruh Roh!</h5>
+            </div>
+            <div class="modal-body">
+                <p>All forms must be filled out</p>
+            </div>
+            <div class="modal-footer">
+                <button id="emptyInputClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container question-page col-md-9">
     <form class="form question-form">
@@ -15,9 +64,18 @@
         <input id="email" type="email" placeholder="email adress" aria-label="email" />
         <input id="password" type="password" placeholder="password" aria-label="password" />
         <input id="confirm-password" type="password" placeholder="confirm password" aria-label="confirm password" />
-       
+
         <button id="signup-btn">Submit</button>
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 <script src="/js/signup.js"></script>
