@@ -103,15 +103,14 @@ module.exports = function(app, passport) {
     res.render("/questionaire");
   });
 
-  app.get("/matches", function(req, res) {
+  app.get("/matches", async function(req, res) {
+    //get data and int
     res.render("matches");
   });
 
   // Browse all possible matches
   app.get("/browse", isLoggedIn, function(req, res) {
-    res.render("browse", {
-      msg: "Welcome!"
-    });
+    res.render("browse");
   });
 
   app.get("/test", isLoggedIn, function(req, res) {
