@@ -1,6 +1,5 @@
 const db = require("../models");
 const moment = require("moment");
-const request = require("request");
 
 module.exports = function(app, passport) {
   app.get("/", function(req, res) {
@@ -106,11 +105,6 @@ module.exports = function(app, passport) {
 
   app.get("/matches", async function(req, res) {
     //get data and int
-    const data = await request("/api/matches", (err, response, body) => {
-      if (err) throw err;
-      console.log("status code:", response && response.statusCode);
-      console.log(body);
-    });
     res.render("matches");
   });
 

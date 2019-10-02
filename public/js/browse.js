@@ -64,6 +64,12 @@ function getUsers() {
 
       return response.data[n].id;
     }
+    document.getElementById("cardUsername").innerHTML = newUserName();
+    document.getElementById("cardUserCar").innerHTML = newUserCar();
+    document.getElementById("cardUserCity").innerHTML = newUserCity();
+    document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+    document.getElementById("cardUserEmail").innerHTML = newUserEmail();
+    document.getElementById("cardUserImg").setAttribute("src", newUserImage());
 
     document
       .getElementById("greenBtn")
@@ -79,6 +85,7 @@ function getUsers() {
         axios
           .post("/api/matches/" + true, { id: newUserId(), yesOrNo: true })
           .then(function(response) {
+            console.log("click");
             console.log(response);
           });
 
