@@ -8,11 +8,11 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-top: 7%;
 }
 
 h1 {
   font-family: "Arsenal", sans-serif;
-  margin-top: 40px;
 }
 
 .list-group-item {
@@ -20,11 +20,13 @@ h1 {
 }
 
 #navbarHeader {
-  position: relative;
-  height: 9%;
+  position: fixed;
+  top: 0;
+  /* height: 9%; */
   width: 100%;
   background: white;
   padding: 10px;
+  z-index: 999;
 }
 
 .logoImg {
@@ -197,6 +199,10 @@ h1 {
   margin-right: 35%;
 }
 
+/* #cardUserCity {
+  font-weight: 100;
+} */
+
 .buttonForm {
   width: 100%;
   text-align: center;
@@ -220,9 +226,9 @@ a {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.card-body {
+/* .card-body {
   border: 1px solid rgb(51, 113, 128);
-}
+} */
 
 #RGBtn {
   display: flex;
@@ -277,4 +283,38 @@ a {
 
 #dashboardDiv {
   display: flex;
+}
+
+#userInfo {
+  text-align: center;
+}
+
+#matchesH1 {
+  text-align: center;
+}
+
+.matchesData,
+.matchesEmail,
+.matchesAbout {
+  /* margin-left: 10px; */
+  background: white;
+}
+
+.matchesData {
+  font-size: 30px;
+}
+
+.matchesEmail {
+  font-size: 20px;
+}
+
+.matchesAbout {
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 20px;
+}
+.matchesImg {
+  border: 20px solid white;
+  height: auto;
+  width: 100%;
 }

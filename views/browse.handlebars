@@ -6,19 +6,18 @@
 </div>
 
 
-<div class="container col-md-6" id="userInfoCard">
+<div class="container col-md-4" id="userInfoCard">
 
-    <div class="card" style="width: 100%; margin-bottom: 40px;">
-        <img id="cardUserImg" src="" class="card-img-top img-fluid" alt="...">
+    <div class="card" style="width: 100%; margin-bottom: 40px; border:none;">
+        <img id="cardUserImg" src="" height="400" width="520" class="card-img-top img-fluid" alt="...">
         <div class="card-body">
             {{#each browse}}
             {{browse.getUsers}}
             {{/each}}
-            <h4 class="card-title" id="cardUsername"></h4>
-            <h5 class="card-text" id="cardUserCar"></h5>
-            <h5 class="card-text" id="cardUserCity"></h5>
-            <h6 class="card-text" id="cardUserEmail"></h6>
-            <p class="card-text" id="cardUserAbout"></p>
+            <h3 class="card-title" id="cardUsername"></h3>
+            <h3 class="card-text" id="cardUserCity"></h3>
+            <h3 class="card-text" id="cardUserCar"></h3>
+            <h5 class="card-text" id="cardUserAbout"></h5>
         </div>
     </div>
 
