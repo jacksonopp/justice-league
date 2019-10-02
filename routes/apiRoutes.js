@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 module.exports = function(app, passport) {
   //get all users for the browse page
   try {
-    app.get("/api/users", async function(req, res) {
+    app.get("/api/users", isLoggedIn, async function(req, res) {
       // set up an array to save matches
       const matchArr = [];
       // find all other users that the current user matched with
@@ -176,7 +176,7 @@ module.exports = function(app, passport) {
   });
 
   // Get matches for user1
-  app.get("/api/matches/", async function(req, res) {
+  app.get("/api/matches/", isLoggedIn, async function(req, res) {
     try {
       console.log("Req: " + req.user);
       //console.log(res);
@@ -235,4 +235,11 @@ module.exports = function(app, passport) {
       console.log(error);
     }
   });
+  //checking for logged in middleware
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/");
+  }
 };
