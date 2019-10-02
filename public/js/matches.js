@@ -5,7 +5,7 @@ axios.get("/api/matches").then(function(response) {
     const userName = document.createElement("div");
     userName.setAttribute("class", "card");
     userName.innerHTML =
-      user.username + "<br>" + user.email + "<br>" + user.about;
+      user[0].username + "<br>" + user[0].email + "<br>" + user[0].about;
 
     userInfo.append(userName);
   });

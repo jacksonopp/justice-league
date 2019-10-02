@@ -69,7 +69,6 @@ function getUsers() {
     document.getElementById("cardUserCar").innerHTML = newUserCar();
     document.getElementById("cardUserCity").innerHTML = newUserCity();
     document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-    document.getElementById("cardUserEmail").innerHTML = newUserEmail();
     document.getElementById("cardUserImg").setAttribute("src", newUserImage());
 
     document
@@ -79,7 +78,6 @@ function getUsers() {
         document.getElementById("cardUserCar").innerHTML = newUserCar();
         document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
