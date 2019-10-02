@@ -5,23 +5,24 @@
     <a href="/browse"> &nbsp; Browse</a>
 </div>
 
+<div id="matchesH1">
+  <h1>It's time to race with your new matches!</h1>
+</div>
 
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-            <strong>ID</strong>: {{example.id}}</p>
-          <p>
-            <p>
-              <strong>Text</strong>: {{example.text}}</p>
-            <p>
-              <strong>Description:</strong> {{example.description}}</p>
-            <a href="/dashboard">← Back To Home</a>
+      <div class="card mt-4" style="background: transparent; border: none;">
+        <div class="card-body" id="userInfo" style="border: none">  
+          <div id="userData"></div>         
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"
+    integrity="sha256-XmdRbTre/3RulhYk/cOBUMpYlaAp2Rpo/s556u0OIKk=" crossorigin="anonymous"></script>
+<script src="/js/matches.js"></script>
