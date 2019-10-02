@@ -50,14 +50,6 @@ function getUsers() {
       return response.data[m].city;
     }
 
-    function newUserEmail() {
-      n++;
-      n = n % response.data.length;
-      console.log(response.data[l].email);
-
-      return response.data[l].email;
-    }
-
     function newUserId() {
       o++;
       o = o % response.data.length;
@@ -66,21 +58,21 @@ function getUsers() {
       return response.data[n].id;
     }
 
-    document.getElementById("cardUsername").innerHTML = newUserName();
+    document.getElementById("cardUsername").innerHTML =
+      newUserName() + ", " + newUserCity();
+    // document.getElementById("cardUserCity").innerHTML = newUserCity();
     document.getElementById("cardUserCar").innerHTML = newUserCar();
-    document.getElementById("cardUserCity").innerHTML = newUserCity();
     document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-    document.getElementById("cardUserEmail").innerHTML = newUserEmail();
     document.getElementById("cardUserImg").setAttribute("src", newUserImage());
 
     document
       .getElementById("greenBtn")
       .addEventListener("click", function(event) {
-        document.getElementById("cardUsername").innerHTML = newUserName();
+        document.getElementById("cardUsername").innerHTML =
+          newUserName() + ", " + newUserCity();
+        // document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserCar").innerHTML = newUserCar();
-        document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
@@ -96,13 +88,16 @@ function getUsers() {
     document
       .getElementById("redBtn")
       .addEventListener("click", function(event) {
-        document.getElementById("cardUsername").innerHTML = newUserName();
+        document.getElementById("cardUsername").innerHTML =
+          newUserName() + ", " + newUserCity();
         document.getElementById("cardUserCar").innerHTML = newUserCar();
-        document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
+        document
+          .getElementById("cardUserImg")
+          .setAttribute("class", "img-fluid");
         axios
           .post("/api/matches/" + false, { id: newUserId(), yesOrNo: false })
           .then(function(response) {
