@@ -8,6 +8,7 @@ function getUsers() {
     let l = 0;
     let m = 0;
     let n = 0;
+    let o = 0;
 
     function newUserName() {
       i++;
@@ -50,20 +51,25 @@ function getUsers() {
     }
 
     function newUserEmail() {
-      l++;
-      l = l % response.data.length;
+      n++;
+      n = n % response.data.length;
       console.log(response.data[l].email);
 
       return response.data[l].email;
     }
 
     function newUserId() {
-      n++;
-      n = n % response.data.length;
+      o++;
+      o = o % response.data.length;
       console.log(response.data[n].id);
 
-      return response.data[n].id;
+      return response.data[o].id;
     }
+    document.getElementById("cardUsername").innerHTML = newUserName();
+    document.getElementById("cardUserCar").innerHTML = newUserCar();
+    document.getElementById("cardUserCity").innerHTML = newUserCity();
+    document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+    document.getElementById("cardUserImg").setAttribute("src", newUserImage());
 
     document
       .getElementById("greenBtn")
@@ -72,13 +78,13 @@ function getUsers() {
         document.getElementById("cardUserCar").innerHTML = newUserCar();
         document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
         axios
           .post("/api/matches/" + true, { id: newUserId(), yesOrNo: true })
           .then(function(response) {
+            console.log("click");
             console.log(response);
           });
 
@@ -92,6 +98,7 @@ function getUsers() {
         document.getElementById("cardUserCar").innerHTML = newUserCar();
         document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
