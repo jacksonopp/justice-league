@@ -7,8 +7,22 @@ document.getElementById("submit-btn").addEventListener("click", e => {
   e.preventDefault();
   console.log(body);
 
-  axios.put("/questionaire2", body).then(response => {
-    console.log(response);
-  });
-  window.location.href = "/dashboard";
+  if (
+    document.getElementById("imgInput").value === "" ||
+    document.getElementById("carInput").value === "" ||
+    document.getElementById("cityInput").value === "" ||
+    document.getElementById("aboutInput").value === ""
+  ) {
+    document.getElementById("emptyInputModal").style.display = "block";
+    document
+      .getElementById("emptyInputClose")
+      .addEventListener("click", function() {
+        document.getElementById("emptyInputModal").style.display = "none";
+      });
+  } else {
+    axios.put("/questionaire2", body).then(response => {
+      console.log(response);
+      window.location.href = "/dashboard";
+    });
+  }
 });

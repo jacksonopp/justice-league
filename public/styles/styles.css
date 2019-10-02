@@ -9,6 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 7%;
+  font-family: "Arsenal", sans-serif;
 }
 
 h1 {
@@ -22,7 +23,7 @@ h1 {
 #navbarHeader {
   position: fixed;
   top: 0;
-  /* height: 9%; */
+  font-size: 20px;
   width: 100%;
   background: white;
   padding: 10px;
@@ -182,7 +183,7 @@ h1 {
   height: 50px;
   margin: 50px;
   padding-bottom: 90px;
-  box-shadow: none;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: none;
 }
 
@@ -298,23 +299,46 @@ a {
 .matchesAbout {
   /* margin-left: 10px; */
   background: white;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .matchesData {
   font-size: 30px;
+  font-weight: bold;
+  border-top: 1px solid black;
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .matchesEmail {
   font-size: 20px;
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .matchesAbout {
-  margin-bottom: 30px;
   padding: 10px;
   font-size: 20px;
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid black;
 }
+
 .matchesImg {
-  border: 20px solid white;
+  /* border-top: 20px solid white;
+  border-left: 20px solid white;
+  border-right: 20px solid white; */
   height: auto;
   width: 100%;
+}
+
+.userDiv {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: white;
+  margin-bottom: 30px;
+  padding: 30px;
 }
