@@ -66,6 +66,13 @@ function getUsers() {
       return response.data[n].id;
     }
 
+    document.getElementById("cardUsername").innerHTML = newUserName();
+    document.getElementById("cardUserCar").innerHTML = newUserCar();
+    document.getElementById("cardUserCity").innerHTML = newUserCity();
+    document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+    document.getElementById("cardUserEmail").innerHTML = newUserEmail();
+    document.getElementById("cardUserImg").setAttribute("src", newUserImage());
+
     document
       .getElementById("greenBtn")
       .addEventListener("click", function(event) {
