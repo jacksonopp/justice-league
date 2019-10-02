@@ -63,15 +63,8 @@ function getUsers() {
       o = o % response.data.length;
       console.log(response.data[n].id);
 
-      return response.data[n].id;
+      return response.data[o].id;
     }
-    document.getElementById("cardUsername").innerHTML = newUserName();
-    document.getElementById("cardUserCar").innerHTML = newUserCar();
-    document.getElementById("cardUserCity").innerHTML = newUserCity();
-    document.getElementById("cardUserAbout").innerHTML = newUserAbout();
-    document.getElementById("cardUserEmail").innerHTML = newUserEmail();
-    document.getElementById("cardUserImg").setAttribute("src", newUserImage());
-
     document.getElementById("cardUsername").innerHTML = newUserName();
     document.getElementById("cardUserCar").innerHTML = newUserCar();
     document.getElementById("cardUserCity").innerHTML = newUserCity();
@@ -107,6 +100,7 @@ function getUsers() {
         document.getElementById("cardUserCar").innerHTML = newUserCar();
         document.getElementById("cardUserCity").innerHTML = newUserCity();
         document.getElementById("cardUserAbout").innerHTML = newUserAbout();
+        document.getElementById("cardUserEmail").innerHTML = newUserEmail();
         document
           .getElementById("cardUserImg")
           .setAttribute("src", newUserImage());
