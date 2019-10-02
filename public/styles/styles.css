@@ -329,9 +329,6 @@ a {
 }
 
 .matchesImg {
-  /* border-top: 20px solid white;
-  border-left: 20px solid white;
-  border-right: 20px solid white; */
   height: auto;
   width: 100%;
 }
@@ -341,4 +338,19 @@ a {
   background: white;
   margin-bottom: 30px;
   padding: 30px;
+}
+
+.cardUserImg {
+  max-width: 500px;
+  max-height: 400px;
+}
+
+#cardUserImg {
+  position: relative;
+  float: left;
+  width: 522px;
+  height: 400px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

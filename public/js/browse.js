@@ -64,6 +64,8 @@ function getUsers() {
     document.getElementById("cardUserCar").innerHTML = newUserCar();
     document.getElementById("cardUserAbout").innerHTML = newUserAbout();
     document.getElementById("cardUserImg").setAttribute("src", newUserImage());
+    document.getElementById("cardUserImg").setAttribute("height", "400px");
+    document.getElementById("cardUserImg").setAttribute("width", "520px");
 
     document
       .getElementById("greenBtn")
