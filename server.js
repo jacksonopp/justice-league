@@ -1,3 +1,4 @@
+require("dotenv").config();
 // imports
 const express = require("express");
 const passport = require("passport");
@@ -29,7 +30,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // for passport
 app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: true,
+    saveUninitialized: true
+  })
 ); // session secret
 app.use(passport.initialize());
 app.use(passport.session());

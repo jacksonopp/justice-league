@@ -342,3 +342,7 @@ a {
   margin-bottom: 30px;
   padding: 30px;
 }
+
+#cardUserImg {
+  max-height: 400px;
+}
